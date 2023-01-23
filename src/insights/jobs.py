@@ -1,10 +1,12 @@
-from functools import lru_cache
-from typing import List, Dict
 import csv
+import json
+from functools import lru_cache
+from typing import Dict, List
 
 
 @lru_cache
 def read(path: str) -> List[Dict]:
+    data_changed = []
     """Reads a file from a given path and returns its contents
 
     Parameters
@@ -18,8 +20,10 @@ def read(path: str) -> List[Dict]:
         List of rows as dicts
     """
     with open(path) as file:
-        list = csv.DictReader(file)
-        return list
+        data = csv.DictReader(file)
+        for row in data:
+            data_changed.append(row)
+        return data_changed
     raise NotImplementedError
 
 

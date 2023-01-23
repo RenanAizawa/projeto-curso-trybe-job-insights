@@ -1,4 +1,6 @@
-from typing import List, Dict
+from typing import Dict, List
+
+from src.insights.jobs import read
 
 
 def get_unique_industries(path: str) -> List[str]:
@@ -16,6 +18,15 @@ def get_unique_industries(path: str) -> List[str]:
     list
         List of unique industries
     """
+    unique_industries = []
+    data = read(path)
+    for row in data:
+        if row["industry"] not in unique_industries:
+            unique_industries.append(row["industry"])
+    for name in unique_industries:
+        if name == '':
+            unique_industries.remove('')
+    return unique_industries
     raise NotImplementedError
 
 

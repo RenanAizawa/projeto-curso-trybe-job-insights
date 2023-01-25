@@ -27,8 +27,8 @@ def get_max_salary(path: str) -> int:
     for salary in max_salary_str:
         if salary == 'invalid':
             max_salary_str.remove(salary)
-    for salary in max_salary_str:
-        max_salary_int.append(int(float(salary.strip() or 0)))
+        else:
+            max_salary_int.append(int(float(salary.strip() or 0)))
     return max(max_salary_int)
     raise NotImplementedError
 

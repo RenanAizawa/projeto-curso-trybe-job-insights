@@ -55,9 +55,9 @@ def get_min_salary(path: str) -> int:
         if row["min_salary"] not in min_salary_str:
             min_salary_str.append(row["min_salary"])
     for salary in min_salary_str:
-        if salary == 'invalid':
+        if salary == 'invalid' or salary == '':
             pass
-        elif salary != '':
+        else:
             min_salary_int.append(int(salary))
 
     return min(min_salary_int)

@@ -52,7 +52,6 @@ def get_min_salary(path: str) -> int:
     min_salary_int = []
     data = read(path)
     for row in data:
-        # print('data >>>>>', row['min_salary'])
         if row["min_salary"] not in min_salary_str:
             min_salary_str.append(row["min_salary"])
     for salary in min_salary_str:

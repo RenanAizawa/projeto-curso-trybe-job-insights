@@ -26,7 +26,7 @@ def get_max_salary(path: str) -> int:
             max_salary_str.append(row["max_salary"])
     for salary in max_salary_str:
         if salary == 'invalid':
-            max_salary_str.remove(salary)
+            pass
         else:
             max_salary_int.append(int(float(salary.strip() or 0)))
     return max(max_salary_int)
@@ -48,6 +48,20 @@ def get_min_salary(path: str) -> int:
     int
         The minimum salary paid out of all job opportunities
     """
+    min_salary_str = []
+    min_salary_int = []
+    data = read(path)
+    for row in data:
+        # print('data >>>>>', row['min_salary'])
+        if row["min_salary"] not in min_salary_str:
+            min_salary_str.append(row["min_salary"])
+    for salary in min_salary_str:
+        if salary == 'invalid':
+            pass
+        elif salary != '':
+            min_salary_int.append(int(salary))
+
+    return min(min_salary_int)
     raise NotImplementedError
 
 

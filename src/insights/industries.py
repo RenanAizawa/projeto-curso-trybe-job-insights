@@ -45,4 +45,6 @@ def filter_by_industry(jobs: List[Dict], industry: str) -> List[Dict]:
     list
         List of jobs with provided industry
     """
+    data = list(filter(lambda ind: ind["industry"] == industry, jobs))
+    return data
     raise NotImplementedError

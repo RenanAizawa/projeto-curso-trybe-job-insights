@@ -3,6 +3,8 @@ import csv
 from functools import lru_cache
 from typing import Dict, List
 
+# from src.insights.filters_func import fylter_job_type
+
 
 @lru_cache
 def read(path: str) -> List[Dict]:
@@ -67,4 +69,7 @@ def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
     list
         List of jobs with provided job_type
     """
+    data = list(filter(lambda j: j["job_type"] == job_type, jobs))
+    # print("data >>>>>>>>", data)
+    return data
     raise NotImplementedError

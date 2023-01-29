@@ -1,6 +1,7 @@
 from typing import Dict, List, Union
 
-from src.insights.filters_func import salary_exist
+from src.insights.filters_func import (salary_error, salary_exist,
+                                       salary_is_intinger, salary_valid)
 from src.insights.jobs import read
 
 
@@ -88,9 +89,15 @@ def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
         If `job["min_salary"]` is greather than `job["max_salary"]`
         If `salary` isn't a valid integer
     """
-    if salary_exist(job=job):
-        raise
-    return True
+    try:
+        salary_exist(job)
+        salary_is_intinger(job)
+        salary_error(job)
+        salary_valid(salary)
+    except Exception:
+        raise ValueError('algo não estava certo')    
+
+    return int(job["min_salary"]) <= int(salary) <= int(job["max_salary"])
     raise NotImplementedError
 
 

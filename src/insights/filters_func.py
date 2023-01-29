@@ -1,5 +1,9 @@
-def fylter_job_type(jobs, jobs_type):
-    if jobs_type == jobs["job_type"]:
-        return True
-    else:
-        return False
+import pytest
+
+
+def salary_exist(job):
+    with pytest.raises(ValueError):
+        if job["min_salary"] and job["max_salary"]:
+            return False
+        else:
+            return True

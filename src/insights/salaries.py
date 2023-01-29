@@ -1,7 +1,7 @@
 from typing import Dict, List, Union
 
-from src.insights.filters_func import (salary_error, salary_exist,
-                                       salary_is_intinger, salary_valid)
+# from src.insights.filters_func import (salary_error, salary_exist,
+#                                        salary_is_intinger, salary_valid)
 from src.insights.jobs import read
 
 
@@ -90,15 +90,19 @@ def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
         If `salary` isn't a valid integer
     """
     try:
-        salary_exist(job)
-        salary_is_intinger(job)
-        salary_error(job)
-        salary_valid(salary)
+        min = int(job["min_salary"])
+        max = int(job["max_salary"])
+        salary_int = int(salary)
+        # salary_exist(job)
+        # salary_is_intinger(job)
+        # salary_error(job)
+        # salary_valid(salary)
+        # return int(job["min_salary"]) <= int(salary) <= int(job["max_salary"])
     except Exception:
         raise ValueError('algo não estava certo')
-
-    return int(job["min_salary"]) <= int(salary) <= int(job["max_salary"])
-    raise NotImplementedError
+    if max < min:
+        raise ValueError('Error entre max and min')
+    return min <= salary_int <= max
 
 
 def filter_by_salary_range(
@@ -119,4 +123,12 @@ def filter_by_salary_range(
     list
         Jobs whose salary range contains `salary`
     """
+    filter_jobs = []
+    for job in jobs:
+        try:
+            if matches_salary_range(job=job, salary=salary):
+                filter_jobs.append(job)
+        except ValueError:
+            pass
+    return filter_jobs
     raise NotImplementedError

@@ -1,7 +1,7 @@
 def salary_exist(job):
     try:
         (
-            job["min_salary"] in job and 
+            job["min_salary"] in job and
             job["max_salary"] in job)
         pass
     except ValueError:

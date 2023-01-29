@@ -95,7 +95,7 @@ def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
         salary_error(job)
         salary_valid(salary)
     except Exception:
-        raise ValueError('algo não estava certo')    
+        raise ValueError('algo não estava certo')
 
     return int(job["min_salary"]) <= int(salary) <= int(job["max_salary"])
     raise NotImplementedError
